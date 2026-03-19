@@ -1,0 +1,46 @@
+Preparar SQL Server (para el Nivel 3)
+────────────────────────────────────────────────
+Requiere SQL Server Express instalado.
+
+Abre SSMS o Azure Data Studio y ejecuta:
+  CREATE DATABASE LabDatos;
+
+La tabla se crea automáticamente con el botón "Migrar".
+Si prefieres crearla manualmente:
+  USE LabDatos;
+  CREATE TABLE Ciudadanos (
+      Id     INT         PRIMARY KEY,
+      Nombre VARCHAR(50) NOT NULL,
+      Edad   INT         NOT NULL
+  );
+
+La cadena de conexión por defecto es:
+  Server=.\SQLEXPRESS;Database=LabDatos;Trusted_Connection=True;TrustServerCertificate=True;
+
+Si tu instancia tiene otro nombre, cámbiala en el campo
+"Cadena de Conexión" del Nivel 3 antes de migrar.
+
+════════════════════════════════════════════════════════════
+  FLUJO DE USO
+════════════════════════════════════════════════════════════
+
+Nivel 1 — El Escriba
+  1. Llena ID, Nombre, Edad y Posición
+  2. Clic en "Guardar Registro"  → crea datos_ciudadanos.dat
+  3. Cambia la Posición y clic en "Leer Registro"  → Seek directo
+
+Nivel 2 — El Indexador
+  1. Clic en "Construir Archivo Índice" → crea datos_ciudadanos.idx
+  2. Escribe un ID y prueba ambos botones de búsqueda
+  3. Compara los tiempos (Secuencial en rojo vs Indexado en verde)
+
+Nivel 3 — SQL Server
+  1. Verifica / ajusta la cadena de conexión
+  2. Clic en "Migrar Archivo → SQL Server"
+  3. Clic en "Ejecutar SELECT" para ver los datos en la tabla
+
+════════════════════════════════════════════════════════════
+  ARCHIVOS GENERADOS (junto al .exe)
+════════════════════════════════════════════════════════════
+  datos_ciudadanos.dat   → archivo binario de acceso directo
+  datos_ciudadanos.idx   → archivo de índice Id→Posición
