@@ -556,7 +556,7 @@ namespace LabDatos
             this.txtConnStr.BackColor = System.Drawing.SystemColors.Control;
             this.txtConnStr.ForeColor = System.Drawing.Color.DimGray;
             this.txtConnStr.Font = new System.Drawing.Font("Consolas", 8.5F);
-            this.txtConnStr.Text = @"Server=.\SQLEXPRESS;Database=LabDatos;Trusted_Connection=True;TrustServerCertificate=True;";
+            this.txtConnStr.Text = @"Server=.\SQLEXPRESS;Database=LabDatos;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;";
 
             this.btnConfigurarConexion.Location = new System.Drawing.Point(840, 26);
             this.btnConfigurarConexion.Name = "btnConfigurarConexion";

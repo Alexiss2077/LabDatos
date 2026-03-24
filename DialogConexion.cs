@@ -181,11 +181,11 @@ public class DialogConexion : Form
         string serverPart = string.IsNullOrEmpty(inst) ? srv : $@"{srv}\{inst}";
 
         if (chkWindowsAuth.Checked)
-            return $"Server={serverPart};Database={db};Trusted_Connection=True;TrustServerCertificate=True;";
+            return $"Server={serverPart};Database={db};Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;";
 
         string pwd = masked ? "***" : txtPassword.Text;
         string usr = txtUsuario.Text.Trim();
-        return $"Server={serverPart};Database={db};User Id={usr};Password={pwd};TrustServerCertificate=True;";
+        return $"Server={serverPart};Database={db};User Id={usr};Password={pwd};TrustServerCertificate=True;Encrypt=False;";
     }
 
     // ─────────────────────────────────────────────────────────────────────────

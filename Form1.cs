@@ -12,7 +12,7 @@ public partial class Form1 : Form
     private readonly GestorIndice _gestorIndice = new();
 
     // ── Estado interno ────────────────────────────────────────────────────────
-    private string _connString = @"Server=.\SQLEXPRESS;Database=LabDatos;Trusted_Connection=True;TrustServerCertificate=True;";
+    private string _connString = @"Server=.\SQLEXPRESS;Database=LabDatos;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;";
     private int? _posicionEditando = null;   // null = modo "nuevo registro"
 
     // ─────────────────────────────────────────────────────────────────────────
