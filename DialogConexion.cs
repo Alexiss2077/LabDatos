@@ -187,7 +187,7 @@ public class DialogConexion : Form
         // Tip
         lblTip = new Label
         {
-            Text = "💡 Con Puerto=1433 la app usa IP,1433 directamente, sin necesitar SQL Browser.",
+            Text = "💡 Con Puerto=1433 la app usa IP,1433 directamente, sin necesitar instancia.",
             Location = new Point(12, 288),
             Size = new Size(476, 18),
             ForeColor = Color.SteelBlue,

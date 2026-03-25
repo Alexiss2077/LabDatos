@@ -1,6 +1,7 @@
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace LabDatos;
@@ -207,7 +208,7 @@ public partial class Form1 : Form
                 Log1($"   → {p.Hechos} / {p.Total} registros insertados...", LogCat.Detalle);
         });
 
-        int total = await _gestorArchivos.AgregarMasivoAsync(1000, progreso);
+        int total = await _gestorArchivos.AgregarMasivoAsync(25000, progreso);
 
         Log1($"✅  Inserción masiva completada: {total} registros.", LogCat.Exito);
         Log1($"   Slots totales: {_gestorArchivos.ContarSlots()}  |  Registros activos: {_gestorArchivos.ContarRegistros()}", LogCat.Detalle);
@@ -347,8 +348,16 @@ public partial class Form1 : Form
             return;
         }
 
+
         btnMigrar.Enabled = false;
+        this.UseWaitCursor = true; ///////////////
+       // Cursor = Cursors.WaitCursor;
         lblEstadoMig.Text = "⏳ Migrando...";
+        Application.DoEvents();
+        // Cursor = Cursors.Default;
+
+        this.Cursor = Cursors.Default;
+        
 
         try
         {
@@ -367,9 +376,11 @@ public partial class Form1 : Form
             });
 
             int total = await migrador.MigrarDesdeArchivoAsync(_gestorArchivos.ArchivoPath, progreso);
+            Cursor = Cursors.WaitCursor;
 
             lblEstadoMig.Text = $"✅ {total} registros";
             Log3($"🎉  Migración completa: {total} registros insertados en SQL Server.", LogCat.Exito);
+            Cursor = Cursors.Default;
         }
         catch (Exception ex)
         {
@@ -380,6 +391,7 @@ public partial class Form1 : Form
         }
         finally
         {
+            this.UseWaitCursor = false; ///////////////
             btnMigrar.Enabled = true;
         }
     }
